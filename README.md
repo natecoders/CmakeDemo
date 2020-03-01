@@ -39,7 +39,7 @@ CMake中所有变量都是string类型。可以使用set()和unset()命令来生
  > 想要看到message命令打印的信息，build工程然后在路径app\externalNativeBuild\cmake\debug\armeabi-v7a\cmake_build_output.txt.txt中就能看到
  
  
-```
+```shell
 #声明变量
 set(name 123)
 #引用变量 message是打印命令
