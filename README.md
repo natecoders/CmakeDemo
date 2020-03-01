@@ -39,7 +39,7 @@ CMake中所有变量都是string类型。可以使用set()和unset()命令来生
  > 想要看到message命令打印的信息，build工程然后在路径app\externalNativeBuild\cmake\debug\armeabi-v7a\cmake_build_output.txt.txt中就能看到
  
  
-```shell
+```
 #声明变量
 set(name 123)
 #引用变量 message是打印命令
@@ -65,7 +65,7 @@ message("list_var=${list_var}")
 ```
 
 ## CmakeList.txt 文件配置详解
-只要通过Android Studio 创建一个C++工程会默认创建一个CmakeList.txt 
+只要通过Android Studio 创建一个C++工程会默认创建一个CmakeList.txt
 
 ```
 cmake_minimum_required(VERSION 3.4.1)
@@ -160,7 +160,7 @@ int sum(int a, int b) {
 ```
 native-lib.cpp 使用到了one.h 文件
 
-```
+```c++
 #include <jni.h>
 #include <string>
 #include "one/one.h"
@@ -191,15 +191,15 @@ add_library(
         SHARED
         one/one.cpp)
 
-add_library( 
+add_library(
         native-lib
         SHARED
         native-lib.cpp)
 
-find_library( 
+find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         one
@@ -217,15 +217,15 @@ add_library(
         STATIC
         one/one.cpp)
 
-add_library( 
+add_library(
         native-lib
         SHARED
         native-lib.cpp)
 
-find_library( 
+find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         one
@@ -301,15 +301,15 @@ add_library(
         one/two.cpp
         )
 
-add_library( 
+add_library(
         native-lib
         SHARED
         native-lib.cpp)
 
-find_library( 
+find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         one
@@ -334,7 +334,7 @@ add_library(
 find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         ${log-lib})
@@ -362,7 +362,7 @@ add_library(
 find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         ${log-lib})
@@ -421,7 +421,7 @@ add_library(
 find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         one
@@ -482,7 +482,7 @@ add_library(
 find_library(
         log-lib
         log)
-        
+
 target_link_libraries(
         native-lib
         one
@@ -601,18 +601,18 @@ set_target_properties( # Specifies the target library.
 
         # Provides the path to the library you want to import.
         ${PROJECT_SOURCE_DIR}/../jniLibs/Debug/${ANDROID_ABI}/libcjson.a )
-        
+
 
 target_link_libraries(
         native-lib
 
         one
 # 这个地方是使用到的地方
-        cjson 
+        cjson
 
         two
 
-        ${log-lib})        
+        ${log-lib})
 ```
 修改native-lib.cpp文件我们在这里增加获取cjson版本号码的能力
 
@@ -701,13 +701,13 @@ set_target_properties( # Specifies the target library.
 
         # Provides the path to the library you want to import.
         ${PROJECT_SOURCE_DIR}/../jniLibs/Debug/${ANDROID_ABI}/libcjson.a )
-        
+
 # 这个地方是使用到的地方
-        cjson 
+        cjson
 
         two
 
-        ${log-lib}) 
+        ${log-lib})
 ```
 
 
@@ -784,7 +784,7 @@ set 这个用来定义一个变量
 
 ```
 # 变量名为 var，值为 hello
-set(var hello) 
+set(var hello)
 ```
 当需要引用变量时，在变量名外面加上 ${} 符合来引用变量。
 
@@ -798,7 +798,7 @@ ${var}
 
 
 ```
-set(var hello) 
+set(var hello)
 message(${var})
 ```
 
@@ -876,57 +876,22 @@ file(GLOB_RECURSE CORE_SOURCE ./detail/*.cpp)
 
 
 
-
-
 # 参考资料
 
-[NDK开发总结](https://ejin66.github.io/2018/01/08/android-ndk.html)
-
-[android studio 使用Cmake编译jni](http://www.z-gelen.com/index.php/archives/150/)
-
-[Android.mk与Cmake配置](https://blog.csdn.net/hongxue8888/article/details/102473727)
-
-[多级目录下cmake CMakeLists.txt使用方法（多个CmakeLists.txt编译）](https://blog.csdn.net/u012258999/article/details/87161613)
-
-[Android NDK秘籍--编译静态库、调用静态库](https://juejin.im/post/5cbc2a3f518825324c44f433/)
-
-
-[ndk-samples](https://github.com/android/ndk-samples/blob/master/webp/view/src/main/cpp/CMakeLists.txt)
-
- [Android NDK初步](https://rustfisher.com/2016/06/14/Android/NDK-use_sample_2/)
- 
- [Android NDK开发系列教程5：局部引用，全局引用，弱全局引用](https://www.dazhuanlan.com/2019/10/14/5da3f9861c80e/)
- 
- [Android develop JNI教程](https://developer.android.com/training/articles/perf-jni)
- 
-
-
-
 ##  Cmake 配置相关
+- [多级目录下cmake CMakeLists.txt使用方法（多个CmakeLists.txt编译）](https://blog.csdn.net/u012258999/article/details/87161613)
+- [Android NDK秘籍--编译静态库、调用静态库](https://juejin.im/post/5cbc2a3f518825324c44f433/)
+- [android studio 使用Cmake编译jni](http://www.z-gelen.com/index.php/archives/150/)
+
+- [Android.mk与Cmake配置](https://blog.csdn.net/hongxue8888/article/details/102473727)
 - [Android NDK 开发之 CMake 必知必会](https://juejin.im/post/5b9879976fb9a05d330aa206)
 -  [CMake](https://chsmy.github.io/2019/05/25/technology/CMake/)
 -  [配置 CMake](https://developer.android.com/studio/projects/configure-cmake?hl=zh-cn)
- 
+
 ##  Cmake 编译第三方so
 - [AS使用NDK Cmake方式依赖第三方库](https://segmentfault.com/a/1190000012729891)
 - [使用cmake解决Android中对第三方库的依赖](https://mushuichuan.com/2017/06/11/cmake/)
 - [使用cmake连接第三方so](https://guolei1130.github.io/2017/06/22/%E4%BD%BF%E7%94%A8cmake%E8%BF%9E%E6%8E%A5%E7%AC%AC%E4%B8%89%E6%96%B9so/)
 - [android studio 3.2 cmake jni调用第三方库动态库
 ](https://blog.csdn.net/qq_34759481/article/details/83898710)
- 
- [你真的了解 NDK 和 jni 的区别吗
-](https://juejin.im/post/5989133ff265da3e2e56ff26)
 
-
-
-JNI 调用相关
-
-[Android JNI/NDK 使用全解
-](https://juejin.im/post/5df774f7f265da33e97fceef)
-
-
-
-
- [AndroidJNI优化](https://juejin.im/post/5d2bf60a51882566d05f4672#heading-5)
- 
- [Android NDK开发扫盲及最新CMake的编译使用](https://www.jianshu.com/p/6332418b12b1)
